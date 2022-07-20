@@ -22,8 +22,8 @@
       gesture-detector
       id="scene"
     >
-    <audio control>
-        <source src="assets/philippines.mp3" type="audio/mpeg"/>
+    <audio id="song" src="./assets/philippines.mp3">
+     </audio>
 
     </audio>
 
@@ -46,7 +46,7 @@
     <a-entity id="entity" look-at="[camera]">
       <a-entity
           gltf-model="#ph" 
-          scale="0.005 0.005 0.005" 
+          scale="0.2 0.2 0.2" 
           position = "0.2 0 0.7" 
 	animation-mixer = "clip:KeyAction "
 	  class="clickable"
