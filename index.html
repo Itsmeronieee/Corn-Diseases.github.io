@@ -22,29 +22,33 @@
       gesture-detector
       id="scene"
     >
-      <audio id="song" src="./assets/zoo.mp3"></audio>
-	    
+    <audio control>
+        <source src="./assets/philippines.mp3" type="audio/mpeg"/>
+
+    </audio>
+
       <a-assets>
-        <a-asset-item
-          id="ph"
-          src="./ph.glb"
+
+        <a-asset-item 
+        id="ph" 
+        src="./ph.glb"
         >
         </a-asset-item>
-        
+
 
       </a-assets>
       
       <a-marker
         type="pattern"
-        url="https://ronnelbillones.github.io/Trial/marker/pattern-zoo.patt"
+        url="https://itsmeronieee.github.io/Try.github.io/marker/pattern-ph flag.patt"
       >
     
     <a-entity id="entity" look-at="[camera]">
       <a-entity
           gltf-model="#ph" 
-          scale="0.1 0.1 0.1" 
+          scale="0.005 0.005 0.005" 
           position = "0.2 0 0.7" 
-	animation-mixer = "clip:KeyAction"
+	animation-mixer = "clip:KeyAction "
 	  class="clickable"
           gesture-handler
         >
@@ -57,51 +61,7 @@
     </a-scene>
 
 
-    <a-scene
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-    embedded
-    renderer="logarithmicDepthBuffer: true;"
-    vr-mode-ui="enabled: false"
-    gesture-detector
-    id="scene"
-  >
-  <audio control>
 
-    <source src="./assets/zoo.mp3" type="audio/mpeg"/>
-
-    </audio>
-      
-    <a-assets>
-      <a-asset-item
-        id="usa"
-        src="./usa.glb"
-      >
-      </a-asset-item>
-      
-
-    </a-assets>
-    
-    <a-marker
-      type="pattern"
-      url="https://ronnelbillones.github.io/Trial/marker/pattern-zoo.patt"
-    >
-  
-  <a-entity id="entity" look-at="[camera]">
-    <a-entity
-        gltf-model="#usa" 
-        scale="0.1 0.1 0.1" 
-        position = "0.2 0 0.7" 
-  animation-mixer = "clip:KeyAction"
-    class="clickable"
-        gesture-handler
-      >
-      </a-entity>
-  <a-sound src=#song autoplay="true"> </a-sound>
-  </a-entity>
-    </a-marker>
-    
-    <a-entity camera></a-entity>
-  </a-scene>
 
     
   </body>
