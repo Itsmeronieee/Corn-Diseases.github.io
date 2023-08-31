@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>National Anthem</title>
+    <title>AR Blight</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="styles.css">
@@ -24,7 +24,7 @@
     >
 
     <figure>
-        <figcaption>Listen National Anthem:</figcaption>
+        <figcaption>AR blight:</figcaption>
 
 
         <audio
@@ -37,8 +37,8 @@
     </figure>
       <a-assets>
         <a-asset-item
-          id="ph"
-          src="./ph.glb"
+          id="maiz"
+          src="./maiz.glb"
         >
         </a-asset-item>
         
@@ -46,14 +46,13 @@
       
       <a-marker
         type="pattern"
-        url="https://itsmeronieee.github.io/Try.github.io/marker/pattern-ph flag.patt"
+        url="https://itsmeronieee.github.io/Try.github.io/marker/pattern-blight5.patt"
     >
     <a-entity id="entity" look-at="[camera]">
       <a-entity
-          gltf-model="#ph" 
+          gltf-model="#maiz" 
           scale="1 1 1" 
           position = "-0.4 0 0.7" 
-	animation-mixer = "clip:KeyAction"
 	  class="clickable"
           gesture-handler
         >
