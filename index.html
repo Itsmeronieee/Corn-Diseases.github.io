@@ -27,7 +27,7 @@
         <figcaption>AR:</figcaption>
         <audio
             controls
-            src="./assets/philippines.mp3">
+            src="./Try.github.io/assets/philippines.mp3">
                 Your browser does not support the
                 <code>audio</code> element.
         </audio>
@@ -35,29 +35,19 @@
       <a-assets>
         <a-asset-item
           id="ph"
-          src="./ph.glb"
-        >
-        </a-asset-item>
-      </a-assets>
-      
-      <a-assets>
-        <a-asset-item
              id="usa"
+          src="./ph.glb"
 		src="./usa.glb"
         >
         </a-asset-item>
+        
       </a-assets>
       
-
       <a-marker
         type="pattern"
         url="https://itsmeronieee.github.io/Try.github.io/marker/pattern-ph flag.patt"
+	url="https://itsmeronieee.github.io/Try.github.io/marker/pattern-usa flag.patt"     
     >
-    <a-marker
-    type="pattern"
-    url="https://itsmeronieee.github.io/Try.github.io/marker/pattern-usa flag.patt"
->
-    
     <a-entity id="entity" look-at="[camera]">
       <a-entity
           gltf-model="#ph" 
@@ -68,17 +58,6 @@
           gesture-handler
         >
         </a-entity>
-
-        <a-entity id="entity" look-at="[camera]">
-            <a-entity
-                gltf-model="#usa" 
-                scale="1 1 1" 
-                position = "-0.4 0 0.7" 
-          animation-mixer = "clip:KeyAction"
-            class="clickable"
-                gesture-handler
-              >
-              </a-entity>
 
 	<a-sound src=#song autoplay="true"> </a-sound>
 	</a-entity>
