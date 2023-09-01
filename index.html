@@ -52,12 +52,8 @@
 
           <a-sound src="#song" autoplay="true"></a-sound>
 
-          <!-- Adjusted position and rotation of the text entity on the right side of the GLB -->
-          <a-entity
-            position="0 0 -1" <!-- Adjust the X and Z positions as needed -->
-            rotation="0 90 0" <!-- Rotate the text entity 90 degrees around the Y-axis -->
-            text="value: AR Blight; align: center; width: 6; color: white"
-          ></a-entity>
+          <!-- Empty entity to hold the dynamically added text -->
+          <a-entity id="textContainer"></a-entity>
         </a-entity>
       </a-marker>
       
