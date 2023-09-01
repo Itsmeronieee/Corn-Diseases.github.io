@@ -31,11 +31,17 @@
           src="./maiz.glb"
         >
         </a-asset-item>
+        <a-asset-item
+          id="among_us_character"
+          src="./among_us_character.glb"
+        >
+        </a-asset-item>
       </a-assets>
 
       <a-marker
         type="pattern"
         url="https://itsmeronieee.github.io/diseases.github.io/marker/pattern-blight5.patt"
+        id="marker" <!-- Add unique ID to the first marker -->
       >
         <a-entity id="entity" look-at="[camera]">
           <a-entity
@@ -57,27 +63,20 @@
 
       <!-- Second Sample -->
 
-      <a-assets>
-        <a-asset-item
-          id="among_us_character"
-          src="./among_us_character.glb"
-        >
-        </a-asset-item>
-      </a-assets>
-
-      
       <a-marker
         type="pattern"
         url="https://itsmeronieee.github.io/diseases.github.io/marker/pattern-Corn_Common_Rust.patt"
+        id="marker2" <!-- Add unique ID to the second marker -->
       >
         <a-entity id="entity2" look-at="[camera]">
           <a-entity
             gltf-model="#among_us_character"
-            scale=""0.002 0.002 0.002""
+            scale="0.002 0.002 0.002" <!-- Make it smaller -->
             position="0 0 0"
             class="clickable"
             gesture-handler
-            animation-mixer = "AmongUsArmature|ArmatureAction"
+            animation-mixer="clip: *; loop: repeat; timeScale: 2"
+          >
           </a-entity>
 
           <a-sound src="#newSong" autoplay="true"></a-sound>
@@ -92,51 +91,46 @@
 
     <!-- JavaScript code to dynamically add and remove text -->
     <script>
-      // Get a reference to the scene and marker elements
+      // Get a reference to the scene
       const scene = document.querySelector("#scene");
-      const marker = document.querySelector("a-marker");
 
       // Function to create and add the text entity
-      function addTextEntity() {
-        const textContainer = document.querySelector("#textContainer");
+      function addTextEntity(text, containerId) {
+        const textContainer = document.querySelector(`#${containerId}`);
         const textEntity = document.createElement("a-entity");
         textEntity.setAttribute("position", "0 0.2 -1");
-        textEntity.setAttribute("text", "value: AR Common Rust; align: center; width: 6; color: white");
+        textEntity.setAttribute("text", `value: ${text}; align: center; width: 6; color: white`);
         textContainer.appendChild(textEntity);
       }
 
       // Event listener to add text when marker is detected
-      marker.addEventListener("markerFound", () => {
-        addTextEntity();
+      scene.addEventListener("markerFound", (event) => {
+        const marker = event.target;
+        const markerId = marker.getAttribute("id");
+
+        if (markerId === "marker") {
+          // Display AR Blight text for the first marker
+          addTextEntity("AR Blight", "textContainer");
+        } else if (markerId === "marker2") {
+          // Display AR Common Rust text for the second marker
+          addTextEntity("AR Common Rust", "textContainer2");
+        }
       });
 
       // Event listener to remove text when marker is lost (optional)
-      marker.addEventListener("markerLost", () => {
-        const textContainer = document.querySelector("#textContainer");
-        textContainer.innerHTML = ""; // Remove the text entity when marker is lost
-      });
+      scene.addEventListener("markerLost", (event) => {
+        const marker = event.target;
+        const markerId = marker.getAttribute("id");
 
-      // Get a reference to the marker element for the second sample
-      const marker2 = document.querySelector("a-marker[type='pattern'][url='URL_TO_YOUR_SECOND_MARKER_PATTERN.patt']");
-
-      // Function to create and add the text entity for the second sample
-      function addTextEntity2() {
-        const textContainer2 = document.querySelector("#textContainer2");
-        const textEntity2 = document.createElement("a-entity");
-        textEntity2.setAttribute("position", "0 0.2 -1");
-        textEntity2.setAttribute("text", "value: Your Text Here; align: center; width: 6; color: white");
-        textContainer2.appendChild(textEntity2);
-      }
-
-      // Event listener to add text for the second sample when its marker is found
-      marker2.addEventListener("markerFound", () => {
-        addTextEntity2();
-      });
-
-      // Event listener to remove text for the second sample when its marker is lost (optional)
-      marker2.addEventListener("markerLost", () => {
-        const textContainer2 = document.querySelector("#textContainer2");
-        textContainer2.innerHTML = ""; // Remove the text entity when marker is lost
+        if (markerId === "marker") {
+          // Remove the text entity when the first marker is lost
+          const textContainer = document.querySelector("#textContainer");
+          textContainer.innerHTML = "";
+        } else if (markerId === "marker2") {
+          // Remove the text entity when the second marker is lost
+          const textContainer2 = document.querySelector("#textContainer2");
+          textContainer2.innerHTML = "";
+        }
       });
     </script>
   </body>
