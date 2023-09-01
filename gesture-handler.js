@@ -42,12 +42,10 @@ AFRAME.registerComponent("gesture-handler", {
 
   handleRotation: function (event) {
     if (this.isVisible) {
-      if (!event.detail.stopRotation) {
-        this.el.object3D.rotation.y +=
-          event.detail.positionChange.x * this.data.rotationFactor;
-        this.el.object3D.rotation.x +=
-          event.detail.positionChange.y * this.data.rotationFactor;
-      }
+      this.el.object3D.rotation.y +=
+        event.detail.positionChange.x * this.data.rotationFactor;
+      this.el.object3D.rotation.x +=
+        event.detail.positionChange.y * this.data.rotationFactor;
     }
   },
 
@@ -63,21 +61,7 @@ AFRAME.registerComponent("gesture-handler", {
 
       this.el.object3D.scale.x = this.scaleFactor * this.initialScale.x;
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
-      this.el.object3D.scale.z = this scaleFactor * this.initialScale.z;
+      this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
     }
-  },
-});
-
-// Include the clickable component within the same JavaScript file
-AFRAME.registerComponent("clickable", {
-  init: function () {
-    const el = this.el;
-    el.addEventListener("click", function () {
-      if (el.id === "stopButton") {
-        // Stop rotation when the button is clicked
-        const maizEntity = document.querySelector("#maiz");
-        maizEntity.removeAttribute("animation__rotation");
-      }
-    });
   },
 });
