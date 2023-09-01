@@ -23,23 +23,6 @@
       id="scene"
     >
 
-    <a-entity
-      position="0 1 -2" <!-- Adjust the position as needed -->
-      text="value: AR Blight; align: center; width: 4; color: white; anchor: center; baseline: bottom;"
-    ></a-entity>
-
-    <figure>
-        <figcaption>AR blight:</figcaption>
-    </figure>
-      <a-assets>
-        <a-asset-item
-          id="maiz"
-          src="./maiz.glb"
-        >
-        </a-asset-item>
-        
-      </a-assets>
-      
       <a-marker
         type="pattern"
         url="https://itsmeronieee.github.io/Try.github.io/marker/pattern-blight5.patt"
@@ -48,18 +31,25 @@
       <a-entity
           gltf-model="#maiz" 
           scale="1 1 1" 
-          position = "0 0 0" 
-	  class="clickable"
+          position="0 0 0" 
+	      class="clickable"
           gesture-handler
-	 animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+	      animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
         >
-        </a-entity>
+      </a-entity>
 
-	<a-sound src=#song autoplay="true"> </a-sound>
-	</a-entity>
-      </a-marker>
+	  <a-sound src=#song autoplay="true"> </a-sound>
+	  </a-entity>
+    </a-marker>
       
-      <a-entity camera></a-entity>
-    </a-scene>
+    <a-entity camera></a-entity>
+
+    <!-- Add text inside the camera entity -->
+    <a-entity
+      position="0 0 -1" <!-- Adjust the position as needed -->
+      text="value: AR Blight; align: center; width: 4; color: white; anchor: center; baseline: bottom;"
+    ></a-entity>
+
+  </a-scene>
   </body>
 </html>
