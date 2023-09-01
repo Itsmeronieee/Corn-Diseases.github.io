@@ -11,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="gesture-detector.js"></script>
     <script src="gesture-handler.js"></script>    
-    <script src="clickable.js"></script> <!-- Added clickable.js -->
   </head>
 
   <body>
@@ -26,6 +25,7 @@
 
     <figure>
         <figcaption>AR blight:</figcaption>
+
     </figure>
       <a-assets>
         <a-asset-item
@@ -45,26 +45,15 @@
           gltf-model="#maiz" 
           scale="1 1 1" 
           position = "0 0 0" 
-          class="clickable"
+	  class="clickable"
           gesture-handler
-          animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+	 animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
         >
         </a-entity>
 
-    <a-sound src=#song autoplay="true"> </a-sound>
-    </a-entity>
+	<a-sound src=#song autoplay="true"> </a-sound>
+	</a-entity>
       </a-marker>
-
-      <!-- Added the button -->
-      <a-entity
-        id="stopButton"
-        geometry="primitive: plane; width: 0.2; height: 0.1"
-        material="color: red"
-        position="0 0.2 -1"
-        text="value: Stop; align: center; width: 6"
-        clickable
-        gesture-handler
-      ></a-entity>
       
       <a-entity camera></a-entity>
     </a-scene>
