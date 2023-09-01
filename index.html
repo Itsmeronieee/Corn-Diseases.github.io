@@ -52,8 +52,11 @@
 
           <a-sound src="#song" autoplay="true"></a-sound>
 
-          <!-- Empty entity to hold the dynamically added text -->
-          <a-entity id="textContainer"></a-entity>
+          <!-- Adjusted position of the text entity at the top of the GLB -->
+          <a-entity
+            position="0 0.5 -1" <!-- Adjust the Y position as needed -->
+            text="value: AR Blight; align: center; width: 6; color: white"
+          ></a-entity>
         </a-entity>
       </a-marker>
       
