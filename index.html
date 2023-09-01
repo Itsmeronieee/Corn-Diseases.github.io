@@ -25,15 +25,14 @@
 
     <figure>
         <figcaption>AR blight:</figcaption>
-
     </figure>
+    
       <a-assets>
         <a-asset-item
           id="maiz"
           src="./maiz.glb"
         >
         </a-asset-item>
-        
       </a-assets>
       
       <a-marker
@@ -44,18 +43,24 @@
       <a-entity
           gltf-model="#maiz" 
           scale="1 1 1" 
-          position = "0 0 0" 
-	  class="clickable"
+          position="0 0 0" 
+	      class="clickable"
           gesture-handler
-	 animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
-        >
-        </a-entity>
+	      animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+      >
+      </a-entity>
 
-	<a-sound src=#song autoplay="true"> </a-sound>
-	</a-entity>
-      </a-marker>
+      <a-sound src="#song" autoplay="true"></a-sound>
+
+      <!-- Add the text entity here -->
+      <a-entity
+        position="0 0.2 -1"
+        text="value: AR Blight; align: center; width: 6; color: white"
+      ></a-entity>
+    </a-entity>
+    </a-marker>
       
-      <a-entity camera></a-entity>
+    <a-entity camera></a-entity>
     </a-scene>
   </body>
 </html>
