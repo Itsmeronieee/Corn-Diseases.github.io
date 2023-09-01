@@ -60,7 +60,7 @@
       <a-assets>
         <a-asset-item
           id="among_us_character"
-          src="./among_us_character"
+          src="./among_us_character.glb"
         >
         </a-asset-item>
       </a-assets>
@@ -77,8 +77,7 @@
             position="0 0 0"
             class="clickable"
             gesture-handler
-            animation="AmongUsArmature|ArmatureAction"
-          >
+            animation-mixer = "AmongUsArmature|ArmatureAction"
           </a-entity>
 
           <a-sound src="#newSong" autoplay="true"></a-sound>
