@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <title>AR Blight</title>
@@ -9,34 +10,11 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="gesture-detector.js"></script>
-    <script src="gesture-handler.js"></script>
-    <script>
-      // Function to toggle rotation
-      function toggleRotation() {
-        var maizEntity = document.querySelector("#maiz");
-        var rotationAnimation = maizEntity.getAttribute("animation__rotation");
-
-        if (rotationAnimation.paused) {
-          maizEntity.removeAttribute("animation__rotation");
-        } else {
-          maizEntity.setAttribute("animation__rotation", rotationAnimation);
-        }
-      }
-    </script>
-    <style>
-      /* Style for the button */
-      button {
-        position: absolute;
-        top: 10px; /* Adjust top position as needed */
-        right: 10px; /* Adjust right position as needed */
-        z-index: 1000; /* Ensure the button appears on top of the scene */
-      }
-    </style>
+    <script src="gesture-handler.js"></script>    
+    <script src="clickable.js"></script> <!-- Added clickable.js -->
   </head>
-  <body>
-    <!-- Add a button to toggle rotation -->
-    <button onclick="toggleRotation()">Toggle Rotation</button>
 
+  <body>
     <a-scene
       arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
       embedded
@@ -45,34 +23,49 @@
       gesture-detector
       id="scene"
     >
-      <figure>
+
+    <figure>
         <figcaption>AR blight:</figcaption>
-      </figure>
+    </figure>
       <a-assets>
         <a-asset-item
           id="maiz"
           src="./maiz.glb"
         >
         </a-asset-item>
+        
       </a-assets>
-
+      
       <a-marker
         type="pattern"
         url="https://itsmeronieee.github.io/Try.github.io/marker/pattern-blight5.patt"
-      >
-        <a-entity id="entity" look-at="[camera]">
-          <a-entity
-            gltf-model="#maiz" 
-            scale="1 1 1" 
-            position="0 0 0" 
-            class="clickable"
-            gesture-handler
-            animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
-          >
-          </a-entity>
-          <a-sound src="#song" autoplay="true"></a-sound>
+    >
+    <a-entity id="entity" look-at="[camera]">
+      <a-entity
+          gltf-model="#maiz" 
+          scale="1 1 1" 
+          position = "0 0 0" 
+          class="clickable"
+          gesture-handler
+          animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+        >
         </a-entity>
+
+    <a-sound src=#song autoplay="true"> </a-sound>
+    </a-entity>
       </a-marker>
+
+      <!-- Added the button -->
+      <a-entity
+        id="stopButton"
+        geometry="primitive: plane; width: 0.2; height: 0.1"
+        material="color: red"
+        position="0 0.2 -1"
+        text="value: Stop; align: center; width: 6"
+        clickable
+        gesture-handler
+      ></a-entity>
+      
       <a-entity camera></a-entity>
     </a-scene>
   </body>
