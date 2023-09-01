@@ -10,9 +10,24 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="gesture-detector.js"></script>
     <script src="gesture-handler.js"></script>
-  </head>
+    <script>
+      // Function to toggle rotation
+      function toggleRotation() {
+        var maizEntity = document.querySelector("#maiz");
+        var rotationAnimation = maizEntity.getAttribute("animation__rotation");
 
+        if (rotationAnimation.paused) {
+          maizEntity.removeAttribute("animation__rotation");
+        } else {
+          maizEntity.setAttribute("animation__rotation", rotationAnimation);
+        }
+      }
+    </script>
+  </head>
   <body>
+    <!-- Add a button to toggle rotation -->
+    <button onclick="toggleRotation()">Toggle Rotation</button>
+
     <a-scene
       arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
       embedded
@@ -21,6 +36,16 @@
       gesture-detector
       id="scene"
     >
+      <figure>
+        <figcaption>AR blight:</figcaption>
+      </figure>
+      <a-assets>
+        <a-asset-item
+          id="maiz"
+          src="./maiz.glb"
+        >
+        </a-asset-item>
+      </a-assets>
 
       <a-marker
         type="pattern"
@@ -34,19 +59,12 @@
             class="clickable"
             gesture-handler
             animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
-          ></a-entity>
-
-          <a-sound src=#song autoplay="true"></a-sound>
+          >
+          </a-entity>
+          <a-sound src="#song" autoplay="true"></a-sound>
         </a-entity>
       </a-marker>
-
       <a-entity camera></a-entity>
-
-      <!-- Add the "AR Blight" text directly within the entity -->
-      <a-entity
-        position="0 0 -1" <!-- Adjust the position as needed -->
-        text="value: AR Blight; color: white; align: center; width: 2"
-      ></a-entity>
     </a-scene>
   </body>
 </html>
