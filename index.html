@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-
 <html>
   <head>
-    <title>AR Blight</title>
+    <title>ARCornia</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="styles.css">
@@ -22,11 +21,10 @@
       gesture-detector
       id="scene"
     >
+      <figure>
+          <figcaption>ARCornia:</figcaption>
+      </figure>
 
-    <figure>
-        <figcaption>AR blight:</figcaption>
-    </figure>
-    
       <a-assets>
         <a-asset-item
           id="maiz"
@@ -34,7 +32,7 @@
         >
         </a-asset-item>
       </a-assets>
-      
+
       <a-marker
         type="pattern"
         url="https://itsmeronieee.github.io/diseases.github.io/marker/pattern-blight5.patt"
@@ -56,7 +54,30 @@
           <a-entity id="textContainer"></a-entity>
         </a-entity>
       </a-marker>
-      
+
+      <!-- Second Sample -->
+      <a-marker
+        type="pattern"
+        url="https://itsmeronieee.github.io/diseases.github.io/marker/pattern-Corn_Common_Rust.patt"
+      >
+        <a-entity id="entity2" look-at="[camera]">
+          <a-entity
+            gltf-model="#among_us_character"
+            scale="1 1 1"
+            position="0 0 0"
+            class="clickable"
+            gesture-handler
+            animation="AmongUsArmature|ArmatureAction"
+          >
+          </a-entity>
+
+          <a-sound src="#newSong" autoplay="true"></a-sound>
+
+          <!-- Empty entity to hold the dynamically added text -->
+          <a-entity id="textContainer2"></a-entity>
+        </a-entity>
+      </a-marker>
+
       <a-entity camera></a-entity>
     </a-scene>
 
@@ -71,7 +92,7 @@
         const textContainer = document.querySelector("#textContainer");
         const textEntity = document.createElement("a-entity");
         textEntity.setAttribute("position", "0 0.2 -1");
-        textEntity.setAttribute("text", "value: AR Blight; align: center; width: 6; color: white");
+        textEntity.setAttribute("text", "value: AR Common Rust; align: center; width: 6; color: white");
         textContainer.appendChild(textEntity);
       }
 
@@ -84,6 +105,29 @@
       marker.addEventListener("markerLost", () => {
         const textContainer = document.querySelector("#textContainer");
         textContainer.innerHTML = ""; // Remove the text entity when marker is lost
+      });
+
+      // Get a reference to the marker element for the second sample
+      const marker2 = document.querySelector("a-marker[type='pattern'][url='URL_TO_YOUR_SECOND_MARKER_PATTERN.patt']");
+
+      // Function to create and add the text entity for the second sample
+      function addTextEntity2() {
+        const textContainer2 = document.querySelector("#textContainer2");
+        const textEntity2 = document.createElement("a-entity");
+        textEntity2.setAttribute("position", "0 0.2 -1");
+        textEntity2.setAttribute("text", "value: Your Text Here; align: center; width: 6; color: white");
+        textContainer2.appendChild(textEntity2);
+      }
+
+      // Event listener to add text for the second sample when its marker is found
+      marker2.addEventListener("markerFound", () => {
+        addTextEntity2();
+      });
+
+      // Event listener to remove text for the second sample when its marker is lost (optional)
+      marker2.addEventListener("markerLost", () => {
+        const textContainer2 = document.querySelector("#textContainer2");
+        textContainer2.innerHTML = ""; // Remove the text entity when marker is lost
       });
     </script>
   </body>
