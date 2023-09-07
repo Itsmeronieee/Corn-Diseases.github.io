@@ -10,8 +10,7 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="gesture-detector.js"></script>
-    <script src="gesture-handler.js"></script>  
-    <script src="stop-button.js"></script>
+    <script src="stop-button.js"></script>    
   </head>
 
   <body>
@@ -40,22 +39,31 @@
         type="pattern"
         url="https://itsmeronieee.github.io/diseases.github.io/marker/pattern-blight5.patt"
       >
-        <a-entity id="entity" look-at="[camera]">
-          <a-entity
-            gltf-model="#maiz" 
-            scale="1 1 1" 
-            position="0 0 0" 
-            class="clickable"
-            gesture-handler
-            animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
-          >
-          </a-entity>
-
-          <a-sound src="#song" autoplay="true"></a-sound>
-
-          <!-- Empty entity to hold the dynamically added text -->
-          <a-entity id="textContainer"></a-entity>
+        <a-entity id="entity" look-at="[camera]"
+          gltf-model="#maiz" 
+          scale="1 1 1" 
+          position="0 0 0" 
+          class="clickable"
+          gesture-handler
+          animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+        >
         </a-entity>
+
+        <a-sound src="#song" autoplay="true"></a-sound>
+
+        <!-- Empty entity to hold the dynamically added text -->
+        <a-entity id="textContainer"></a-entity>
+
+        <!-- Add a button entity to stop rotation -->
+        <a-entity
+          id="stopButton"
+          geometry="primitive: plane; width: 0.3; height: 0.1"
+          material="color: #3498db"
+          position="0 -0.3 0.1"
+          text="value: Stop Rotation; align: center; color: white"
+          clickable
+          stop-button
+        ></a-entity>
       </a-marker>
       
       <a-entity camera></a-entity>
