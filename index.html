@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>ARCornia</title>
+    <title>AR Blight</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="styles.css">
@@ -10,7 +10,7 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="gesture-detector.js"></script>
-    <script src="stop-button.js"></script>    
+    <script src="gesture-handler.js"></script>    
   </head>
 
   <body>
@@ -24,76 +24,38 @@
     >
 
     <figure>
-        <figcaption>ARCornia:</figcaption>
+        <figcaption>AR blight:</figcaption>
+
     </figure>
-    
       <a-assets>
         <a-asset-item
           id="maiz"
           src="./maiz.glb"
         >
         </a-asset-item>
+        
       </a-assets>
       
       <a-marker
         type="pattern"
-        url="https://itsmeronieee.github.io/diseases.github.io/marker/pattern-blight5.patt"
-      >
-        <a-entity id="entity" look-at="[camera]"
+        url="https://itsmeronieee.github.io/Try.github.io/marker/pattern-blight5.patt"
+    >
+    <a-entity id="entity" look-at="[camera]">
+      <a-entity
           gltf-model="#maiz" 
           scale="1 1 1" 
-          position="0 0 0" 
-          class="clickable"
+          position = "0 0 0" 
+	  class="clickable"
           gesture-handler
-          animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+	 animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
         >
         </a-entity>
 
-        <a-sound src="#song" autoplay="true"></a-sound>
-
-        <!-- Empty entity to hold the dynamically added text -->
-        <a-entity id="textContainer"></a-entity>
-
-        <!-- Add a button entity to stop rotation -->
-        <a-entity
-          id="stopButton"
-          geometry="primitive: plane; width: 0.3; height: 0.1"
-          material="color: #3498db"
-          position="0 -0.3 0.1"
-          text="value: Stop Rotation; align: center; color: white"
-          clickable
-          stop-button
-        ></a-entity>
+	<a-sound src=#song autoplay="true"> </a-sound>
+	</a-entity>
       </a-marker>
       
       <a-entity camera></a-entity>
     </a-scene>
-
-    <!-- JavaScript code to dynamically add and remove text -->
-    <script>
-      // Get a reference to the scene and marker elements
-      const scene = document.querySelector("#scene");
-      const marker = document.querySelector("a-marker");
-
-      // Function to create and add the text entity
-      function addTextEntity() {
-        const textContainer = document.querySelector("#textContainer");
-        const textEntity = document.createElement("a-entity");
-        textEntity.setAttribute("position", "0 0.2 -1");
-        textEntity.setAttribute("text", "value: AR Blight; align: center; width: 6; color: white");
-        textContainer.appendChild(textEntity);
-      }
-
-      // Event listener to add text when marker is detected
-      marker.addEventListener("markerFound", () => {
-        addTextEntity();
-      });
-
-      // Event listener to remove text when marker is lost (optional)
-      marker.addEventListener("markerLost", () => {
-        const textContainer = document.querySelector("#textContainer");
-        textContainer.innerHTML = ""; // Remove the text entity when marker is lost
-      });
-    </script>
   </body>
 </html>
