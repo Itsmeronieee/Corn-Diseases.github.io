@@ -1,3 +1,5 @@
+/* global AFRAME, THREE */
+
 AFRAME.registerComponent("gesture-handler", {
   schema: {
     enabled: { default: true },
@@ -20,11 +22,6 @@ AFRAME.registerComponent("gesture-handler", {
 
     this.el.sceneEl.addEventListener("markerLost", (e) => {
       this.isVisible = false;
-    });
-
-    // Listen for a custom event to stop the rotation
-    this.el.sceneEl.addEventListener("stopRotation", () => {
-      this.stopRotation();
     });
   },
 
@@ -65,13 +62,6 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.scale.x = this.scaleFactor * this.initialScale.x;
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
-    }
-  },
-
-  stopRotation: function () {
-    if (this.isVisible) {
-      // Remove the rotation animation
-      this.el.object3D.rotation.set(0, 0, 0);
     }
   },
 });
