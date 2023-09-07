@@ -1,10 +1,11 @@
-// gesture-detector.js
+// Component that detects and emits events for touch gestures
+
 AFRAME.registerComponent("gesture-detector", {
   schema: {
     element: { default: "" }
   },
 
-  init: function () {
+  init: function() {
     this.targetElement =
       this.data.element && document.querySelector(this.data.element);
 
@@ -25,7 +26,7 @@ AFRAME.registerComponent("gesture-detector", {
     this.targetElement.addEventListener("touchmove", this.emitGestureEvent);
   },
 
-  remove: function () {
+  remove: function() {
     this.targetElement.removeEventListener("touchstart", this.emitGestureEvent);
 
     this.targetElement.removeEventListener("touchend", this.emitGestureEvent);
@@ -33,7 +34,7 @@ AFRAME.registerComponent("gesture-detector", {
     this.targetElement.removeEventListener("touchmove", this.emitGestureEvent);
   },
 
-  emitGestureEvent: function (event) {
+  emitGestureEvent(event) {
     const currentState = this.getTouchState(event);
 
     const previousState = this.internalState.previousState;
@@ -99,7 +100,7 @@ AFRAME.registerComponent("gesture-detector", {
     }
   },
 
-  getTouchState: function (event) {
+  getTouchState: function(event) {
     if (event.touches.length === 0) {
       return null;
     }
@@ -146,7 +147,7 @@ AFRAME.registerComponent("gesture-detector", {
             sum +
             Math.sqrt(
               Math.pow(centerPositionRawX - touch.clientX, 2) +
-              Math.pow(centerPositionRawY - touch.clientY, 2)
+                Math.pow(centerPositionRawY - touch.clientY, 2)
             )
           );
         }, 0) / touchList.length;
@@ -157,21 +158,9 @@ AFRAME.registerComponent("gesture-detector", {
     return touchState;
   },
 
-  getEventPrefix: function (touchCount) {
+  getEventPrefix(touchCount) {
     const numberNames = ["one", "two", "three", "many"];
 
     return numberNames[Math.min(touchCount, 4) - 1];
   }
-});
-
-// stop-button.js
-AFRAME.registerComponent("stop-button", {
-  init: function () {
-    this.el.addEventListener("click", this.stopRotation.bind(this));
-  },
-
-  stopRotation: function () {
-    const entity = document.querySelector("#entity");
-    entity.removeAttribute("animation__rotation"); // Remove the rotation animation
-  },
 });
