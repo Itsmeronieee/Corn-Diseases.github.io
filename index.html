@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <title>ARCornia</title>
@@ -33,23 +32,24 @@
           src="./maiz.glb"
         >
         </a-asset-item>
+        <!-- Add an audio asset for the sound (adjust the src URL as needed) -->
+        <audio id="song" src="your-audio-file.mp3"></audio>
       </a-assets>
       
       <a-marker
         type="pattern"
         url="https://itsmeronieee.github.io/diseases.github.io/marker/pattern-blight5.patt"
       >
-        <a-entity id="entity" look-at="[camera]">
+        <a-entity id="entity" look-at="[camera]" class="clickable" gesture-handler>
           <a-entity
             gltf-model="#maiz" 
             scale="1 1 1" 
             position="0 0 0" 
-            class="clickable"
-            gesture-handler
           >
           </a-entity>
 
-          <a-sound src="#song" autoplay="true"></a-sound>
+          <!-- Remove the sound component if it's not needed -->
+          <!--<a-sound src="#song" autoplay="true"></a-sound>-->
 
           <!-- Empty entity to hold the dynamically added text -->
           <a-entity id="textContainer"></a-entity>
@@ -84,6 +84,36 @@
         const textContainer = document.querySelector("#textContainer");
         textContainer.innerHTML = ""; // Remove the text entity when marker is lost
       });
+    </script>
+
+    <!-- JavaScript code to display text with typing effect on tap -->
+    <script>
+      // Get references to the GLB model and the text entity
+      const model = document.querySelector("#entity");
+      const typedText = document.querySelector("#textContainer");
+
+      // Add an event listener to the model for tap gesture
+      model.addEventListener("click", () => {
+        // Show and trigger the text animation
+        typedText.innerHTML = ""; // Clear existing text
+        addTypingEffect("In wet weather, black spores are produced on the lesions that are wind-blown over long distances. Secondary spread is common within and between fields.");
+      });
+
+      // Function to add typing effect to text
+      function addTypingEffect(text) {
+        const textEntity = document.createElement("a-entity");
+        textEntity.setAttribute("position", "0 0.2 -1");
+        textEntity.setAttribute("text", `value: ; align: center; width: 6; color: white`);
+        typedText.appendChild(textEntity);
+
+        // Create animation to type the text
+        const typingAnimation = document.createElement("a-animation");
+        typingAnimation.setAttribute("attribute", "text.value");
+        typingAnimation.setAttribute("from", "");
+        typingAnimation.setAttribute("to", text);
+        typingAnimation.setAttribute("dur", `${text.length * 50}`);
+        textEntity.appendChild(typingAnimation);
+      }
     </script>
   </body>
 </html>
